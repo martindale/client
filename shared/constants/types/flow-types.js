@@ -1471,6 +1471,14 @@ export function gitPutGitMetadataRpcPromise (request: (requestCommon & requestEr
   return new Promise((resolve, reject) => engineRpcOutgoing('keybase.1.git.putGitMetadata', request, (error, result) => error ? reject(error) : resolve(result)))
 }
 
+export function gregorDismissCategoryRpcChannelMap (configKeys: Array<string>, request: requestCommon & requestErrorCallback & {param: gregorDismissCategoryRpcParam}): EngineChannel {
+  return engine()._channelMapRpcHelper(configKeys, 'keybase.1.gregor.dismissCategory', request)
+}
+
+export function gregorDismissCategoryRpcPromise (request: (requestCommon & requestErrorCallback & {param: gregorDismissCategoryRpcParam})): Promise<void> {
+  return new Promise((resolve, reject) => engineRpcOutgoing('keybase.1.gregor.dismissCategory', request, (error, result) => error ? reject(error) : resolve(result)))
+}
+
 export function gregorGetStateRpcChannelMap (configKeys: Array<string>, request: requestCommon & {callback?: ?(err: ?any, response: gregorGetStateResult) => void}): EngineChannel {
   return engine()._channelMapRpcHelper(configKeys, 'keybase.1.gregor.getState', request)
 }
@@ -5383,6 +5391,10 @@ export type gpgUiSelectKeyRpcParam = Exact<{
 export type gpgUiSignRpcParam = Exact<{
   msg: bytes,
   fingerprint: bytes
+}>
+
+export type gregorDismissCategoryRpcParam = Exact<{
+  category: gregor1.Category
 }>
 
 export type gregorInjectItemRpcParam = Exact<{
